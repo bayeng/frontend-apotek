@@ -9,7 +9,7 @@
         <div class="border p-3 me-3 shadow-sm rounded bg-white">
 {{--            <a href="{{route('add-suplier')}}" class="btn btn-primary justify-content-end mb-3">+ Tambah Suplier</a>--}}
             <button type="button" class="btn btn-primary justify-content-end mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Launch demo modal
+                + Tambah Suplier
             </button>
 
             <table class="table table-bordered" id="suppliers-table">
