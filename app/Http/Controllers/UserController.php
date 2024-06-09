@@ -19,7 +19,7 @@ class UserController extends Controller
         $response = Http::get("{$this->apiUrl}/users");
         $data = $response->json();
 
-        return view('pages.user', [
+        return view('pages.users.index', [
             'users'=>$data['data']
         ]);
 
@@ -31,7 +31,7 @@ class UserController extends Controller
 
         $data = $response->json();
 
-        return view('pages.detail.detail-user', [
+        return view('pages.users.detail', [
             'user'=>$data['data']
         ]);
     }

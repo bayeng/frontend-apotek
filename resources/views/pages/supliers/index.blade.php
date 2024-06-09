@@ -7,7 +7,7 @@
             Dashboard / <span class="ms-1 text-dark"> Suplier</span>
         </p>
         <div class="border p-3 me-3 shadow-sm rounded bg-white">
-{{--            <a href="{{route('add-suplier')}}" class="btn btn-primary justify-content-end mb-3">+ Tambah Suplier</a>--}}
+            {{--            <a href="{{route('add-suplier')}}" class="btn btn-primary justify-content-end mb-3">+ Tambah Suplier</a>--}}
             <button type="button" class="btn btn-primary justify-content-end mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 + Tambah Suplier
             </button>

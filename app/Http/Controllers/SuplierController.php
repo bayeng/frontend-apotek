@@ -12,7 +12,7 @@ class SuplierController extends Controller
         $response = Http::get(env('API_URL') . '/suplier');
         $data = $response->json();
 
-        return view('pages.suplier', [
+        return view('pages.supliers.index', [
            'supliers'=>$data['data']
         ]);
     }
