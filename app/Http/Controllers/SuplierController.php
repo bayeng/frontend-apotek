@@ -47,7 +47,6 @@ class SuplierController extends Controller
         ]);
 
         $response = Http::post($url, $data);
-
         if (!$response) {
             dd($response);
         }
