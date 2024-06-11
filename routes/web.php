@@ -8,10 +8,10 @@ Route::get('/', function () {
 
 Route::prefix('supliers')->group(function () {
     Route::get('/', [\App\Http\Controllers\SuplierController::class, 'index']);
-    Route::get('/show/{id}', [\App\Http\Controllers\SuplierController::class, 'show'])->name('detail-suplier');
+    Route::get('/{id}', [\App\Http\Controllers\SuplierController::class, 'show'])->name('detail-suplier');
     Route::post('/add', [\App\Http\Controllers\SuplierController::class, 'store'])->name('store-suplier');
     Route::delete('/{id}', [\App\Http\Controllers\SuplierController::class, 'destroy'])->name('delete-suplier');
-    Route::post('/edit/{id}', [\App\Http\Controllers\UserController::class, 'update'])->name('edit-suplier');
+    Route::patch('/{id}', [\App\Http\Controllers\SuplierController::class, 'update'])->name('edit-suplier');
 });
 
 Route::prefix('users')->group(function () {
