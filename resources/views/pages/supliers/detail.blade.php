@@ -61,6 +61,7 @@
                 <div class="modal-body">
                     <form class="" method="POST" action="{{route('edit-suplier', $suplier['id'])}}">
                         @csrf
+                        @method('PATCH')
                         <div class="mb-3">
                             <div class="row">
                                 <div class="col">

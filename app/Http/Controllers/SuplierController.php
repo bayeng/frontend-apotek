@@ -54,7 +54,6 @@ class SuplierController extends Controller
     public function update(Request $request, $id)
     {
         $url = "{$this->apiUrl}/supliers/{$id}";
-        dd($url);
         $data = $request->all();
         $response = Http::patch($url, $data);
         if (!$response) {
