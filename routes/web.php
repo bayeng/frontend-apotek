@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ObatController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -20,4 +21,6 @@ Route::prefix('users')->group(function () {
 
 });
 
-
+Route::prefix('obats')->group(function () {
+    Route::get('/', [ObatController::class, 'index']);
+});
