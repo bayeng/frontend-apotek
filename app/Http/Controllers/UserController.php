@@ -17,10 +17,15 @@ class UserController extends Controller
     public function index()
     {
         $response = Http::get("{$this->apiUrl}/users");
-        $data = $response->json();
+        if ($response->successful()) {
+            $data = $response->json();
+            $users = $data['data'] ?? [];
+        } else {
+            $users = [];
+        }
 
         return view('pages.users.index', [
-            'users'=>$data['data']
+            'users' => $users
         ]);
 
     }

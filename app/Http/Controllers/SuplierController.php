@@ -16,10 +16,15 @@ class SuplierController extends Controller
     public function index()
     {
         $response = Http::get(env('API_URL') . '/supliers');
-        $data = $response->json();
+        if ($response->successful()) {
+            $data = $response->json();
+            $supliers = $data['data'] ?? [];
+        } else {
+            $supliers = [];
+        }
 
         return view('pages.supliers.index', [
-           'supliers'=>$data['data']
+            'supliers' => $supliers
         ]);
     }
 
