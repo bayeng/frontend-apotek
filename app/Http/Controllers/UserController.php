@@ -35,4 +35,43 @@ class UserController extends Controller
             'user'=>$data['data']
         ]);
     }
+
+    public function store(Request $request)
+    {
+        $data = $request->only([
+            'nama','jenis_kelamin', 'tempat_lahir', 'tgl_lahir', 'gol_darah', 'agama', 'nip', 'username', 'password', 'nip', 'notlp', 'alamat'
+        ]);
+        $url = "{$this->apiUrl}/users";
+
+        $response = Http::post($url, $data);
+        if (!$response) {
+            dd($response);
+        }
+
+        return redirect()->to('users');
+    }
+
+    public function update(Request $request, $id)
+    {
+        $url = "{$this->apiUrl}/users/{$id}";
+        $data = $request->all();
+
+        $response = Http::patch($url, $data);
+        if (!$response) {
+            dd($response);
+        }
+
+        return redirect()->to('detail-user');
+    }
+
+    public function destroy($id)
+    {
+        $url = "{$this->apiUrl}/users/{$id}";
+        $response = Http::delete($url);
+        if (!$response) {
+            dd($response);
+        }
+
+        return redirect()->to('detail-user');
+    }
 }

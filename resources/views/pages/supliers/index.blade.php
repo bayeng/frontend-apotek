@@ -19,11 +19,8 @@
                     <th>Nama</th>
                     <th>Alamat</th>
                     <th>Kota</th>
-                    <th>No. Telepon</th>
-                    <th>Nama Bank</th>
-                    <th>No. Rekening</th>
-                    <th>Dibuat Pada</th>
-                    <th>Action</th>
+                    <th class="text-start">Dibuat Pada</th>
+                    <th >Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -33,12 +30,10 @@
                         <td>{{$item['nama']}}</td>
                         <td>{{$item['alamat']}}</td>
                         <td>{{$item['kota']}}</td>
-                        <td>{{$item['notlp']}}</td>
-                        <td>{{$item['nama_bank']}}</td>
-                        <td>{{$item['no_rekening']}}</td>
-                        <td>{{ \Carbon\Carbon::parse($item['created_at'])->format('Y-m-d') }}</td>
+                        <td class="text-start">{{ \Carbon\Carbon::parse($item['created_at'])->format('Y-m-d') }}</td>
                         <td class="text-center">
                             <form action="{{ route('delete-suplier',  $item['id']) }}" method="POST" style="display:inline;">
+                                <a href="{{route('detail-suplier', $item['id'])}}" class="btn btn-warning">Edit</a>
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger"><i class="bi-trash"></i></button>

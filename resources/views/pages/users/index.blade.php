@@ -17,11 +17,8 @@
                 <tr>
                     <th>No</th>
                     <th>Nama</th>
-                    <th>Alamat</th>
-                    <th>No. Telepon</th>
                     <th>Email</th>
                     <th>Role</th>
-                    <th>Dibuat pada</th>
                     <th>Action</th>
                 </tr>
                 </thead>
@@ -30,19 +27,17 @@
                     <tr>
                         <td>{{$loop->iteration}}</td>
                         <td>{{$item['nama']}}</td>
-                        <td>{{$item['alamat']}}</td>
-                        <td>{{$item['notlp']}}</td>
                         <td>{{$item['email']}}</td>
                         <td>{{$item['role']}}</td>
-                        <td>{{ \Carbon\Carbon::parse($item['created_at'])->format('Y-m-d') }}</td>
-                        <td class="text-center">
+                        <td class="text-center ">
                             <form action="{{ route('detail-user',  $item['id']) }}" method="POST" style="display:inline;">
-                                <a href="{{route('detail-user', $item['id'])}}">Detail</a>
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger"><i class="bi-trash"></i></button>
+                                <div class="d-flex justify-content-center align-items-center gap-2">
+                                    <a href="{{route('detail-user', $item['id'])}}" class="btn-warning btn"><i class="bi-pencil"></i></a>
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger"><i class="bi-trash"></i></button>
+                                </div>
                             </form>
-
                         </td>
                     </tr>
                 @endforeach
@@ -61,35 +56,62 @@
                             <form class="" method="post" action="{{route('store-suplier')}}">
                                 @csrf
                                 <div class="mb-3">
-                                    <div class="row">
+                                    <div class="row mb-2 mb-2">
                                         <div class="col">
-                                            <label for="" class="mb-1">Nama Suplier</label>
-                                            <input required name="nama" type="text" class="form-control" placeholder="Nama Suplier" aria-label="First name">
+                                            <label for="nama" class="mb-1">Nama</label>
+                                            <input required name="nama" type="text" class="form-control" placeholder="{{now()}}" aria-label="Tanggal Datange">
                                         </div>
                                         <div class="col">
-                                            <label for="alamat" class="mb-1">Alamat</label>
-                                            <input required name="alamat" type="text" class="form-control" placeholder="Alamat" aria-label="Last name">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <label for="" class="mb-1">Kota</label>
-                                            <input required name="kota" type="text" class="form-control" placeholder="Kota" aria-label="First name">
-                                        </div>
-                                        <div class="col">
-                                            <label for="" class="mb-1">No tlp.</label>
-                                            <input required name="notlp" type="text" class="form-control" placeholder="No tlp." aria-label="Last name">
+                                            <label for="jenis_kelamin" class="mb-1">Jenis Kelamin</label>
+                                            <input required name="jenis_kelamin" type="text" class="form-control" aria-label="Jenis Kelamin">
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row mb-2">
                                         <div class="col">
-                                            <label for="" class="mb-1">Nama Bank</label>
-                                            <input required name="nama_bank" type="text" class="form-control" placeholder="Nama Bank" aria-label="First name">
+                                            <label for="" class="mb-1">Tempat Lahir</label>
+                                            <input required name="tempat_lahir" type="text" class="form-control" aria-label="First name">
                                         </div>
                                         <div class="col">
-                                            <label for="" class="mb-1">No. Rekening</label>
-                                            <input required name="no_rekening" type="text" class="form-control" placeholder="No. Rekening" aria-label="Last name">
+                                            <label for="" class="mb-1">Tanggal Lahir</label>
+                                            <input required name="tgl_lahir" type="text" class="form-control"  aria-label="Last name">
                                         </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col">
+                                            <label for="" class="mb-1">Golongan Darah</label>
+                                            <input required name="gol_darah" type="text" class="form-control" aria-label="First name">
+                                        </div>
+                                        <div class="col">
+                                            <label for="" class="mb-1">Agama</label>
+                                            <input required name="Agama" type="text" class="form-control" aria-label="First name">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col">
+                                            <label for="" class="mb-1">Alamat</label>
+                                            <input required name="alamat" type="text" class="form-control" aria-label="First name">
+                                        </div>
+                                        <div class="col">
+                                            <label for="" class="mb-1">No. Telepon</label>
+                                            <input required name="Agama" type="text" class="form-control" aria-label="First name">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col">
+                                            <label for="" class="mb-1">NIP</label>
+                                            <input required name="gol_darah" type="text" class="form-control" aria-label="First name">
+                                        </div>
+                                        <div class="col">
+                                            <label for="" class="mb-1">Username</label>
+                                            <input required name="username" type="text" class="form-control" aria-label="First name">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col">
+                                            <label for="" class="mb-1">Password</label>
+                                            <input required name="password" type="password" class="form-control" aria-label="First name">
+                                        </div>
+
                                     </div>
                                 </div>
                                 <div class="modal-footer">
