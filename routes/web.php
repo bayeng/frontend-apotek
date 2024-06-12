@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ObatController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -27,4 +28,7 @@ Route::prefix('obatmasuks')->group(function (){
     Route::get('/add', [\App\Http\Controllers\ObatMasukController::class, 'storePage'])->name('storepage-obatmasuk');
 });
 
+Route::prefix('obats')->group(function () {
+    Route::get('/', [ObatController::class, 'index']);
+});
 
