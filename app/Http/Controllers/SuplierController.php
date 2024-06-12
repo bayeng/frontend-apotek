@@ -15,7 +15,8 @@ class SuplierController extends Controller
 
     public function index()
     {
-        $response = Http::get(env('API_URL') . '/supliers');
+        $url = "{$this->apiUrl}/supliers";
+        $response = Http::get($url);
         if ($response->successful()) {
             $data = $response->json();
             $supliers = $data['data'] ?? [];

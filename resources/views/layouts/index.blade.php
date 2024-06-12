@@ -16,7 +16,7 @@
             @yield('content')
         </main>
     </main>
-
+    @stack('scripts')
     @yield('script')
 </body>
 
