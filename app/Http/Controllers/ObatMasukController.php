@@ -22,19 +22,38 @@ class ObatMasukController extends Controller
             $obatMasuks = $data['data'] ?? [];
         } else {
             $obatMasuks = [];
-
         }
 
         // Data Relations
-        $supliers = Http::get("{$this->apiUrl}/supliers")->json();
-        $users = Http::get("{$this->apiUrl}/users")->json();
-        $obats = Http::get("{$this->apiUrl}/obats")->json();
+        $supliers = Http::get("{$this->apiUrl}/supliers");
+        if ($supliers->successful()) {
+            $data = $supliers->json();
+            $supliers = $data['data'] ?? [];
+        } else {
+            $supliers = [];
+        }
+
+        $users = Http::get("{$this->apiUrl}/users");
+        if ($users->successful()) {
+            $data = $users->json();
+            $users = $data['data'] ?? [];
+        } else {
+            $users = [];
+        }
+
+        $obats = Http::get("{$this->apiUrl}/obats");
+        if ($obats->successful()) {
+            $data = $obats->json();
+            $obats = $data['data'] ?? [];
+        } else {
+            $obats = [];
+        }
 
         return view('pages.obatmasuks.index', [
             'obatMasuks'=>$obatMasuks,
-            'users'=>$users['data'],
-            'obats'=>$obats['data'],
-            'supliers'=>$supliers['data']
+            'users'=>$users,
+            'obats'=>$obats,
+            'supliers'=>$supliers
         ]);
     }
 
