@@ -135,20 +135,16 @@
 </div>
 @endsection
 
-@section('script')
+@push('scripts')
 <script type="module">
     $(document).ready(function() {
-    $('#suppliers-table').DataTable({
-        theme: 'bootstrap-5',
-    });
     $('#suplier').select2({
-        theme: 'bootstrap-5',
-        selectionCssClass: 'select2--small',
-        dropdownCssClass: 'select2--small',
-        closeOnSelect: true,
-        allowClear: true,
+        theme: 'bootstrap-5'
+    })
+    $('#supliers-table').DataTable({
+        theme: 'bootstrap-5'
     });
-});
 
+});
 </script>
-@endsection
+@endpush
