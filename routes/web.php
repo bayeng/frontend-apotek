@@ -32,3 +32,8 @@ Route::prefix('obats')->group(function () {
     Route::get('/', [ObatController::class, 'index']);
 });
 
+Route::prefix('tujuans')->group(function (){
+    Route::get('/', [\App\Http\Controllers\TujuanController::class, 'index']);
+    Route::post('/', [\App\Http\Controllers\TujuanController::class, 'store'])->name('store-tujuan');
+    Route::delete('/{id}', [\App\Http\Controllers\TujuanController::class, 'destroy'])->name('delete-tujuan');
+});

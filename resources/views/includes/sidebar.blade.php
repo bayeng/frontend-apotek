@@ -4,4 +4,6 @@
         Suplier</a>
     <a href="/obats" class="text-white p-2 w-100 nav-link sidebar-link"><i class="bi bi-capsule-pill"></i> Obat</a>
     <a href="/users" class="text-white p-2 w-100 nav-link sidebar-link"><i class="bi bi-person-fill"></i> Pengguna</a>
+    <a href="/obatmasuks" class="text-white p-2 w-100 nav-link sidebar-link"><i class="bi bi-zoom-in"></i> Obat Masuk</a>
+    <a href="/tujuans" class="text-white p-2 w-100 nav-link sidebar-link"><i class="bi bi-arrow-right"></i> Tujuan</a>
 </nav>

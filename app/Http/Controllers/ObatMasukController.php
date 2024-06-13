@@ -32,9 +32,9 @@ class ObatMasukController extends Controller
 
         return view('pages.obatmasuks.index', [
             'obatMasuks'=>$obatMasuks,
-            'users'=>$users['data'],
-            'obats'=>$obats['data'],
-            'supliers'=>$supliers['data']
+            'users'=>$users['data'] ?? [],
+            'obats'=>$obats['data'] ?? [],
+            'supliers'=>$supliers['data'] ?? []
         ]);
     }
 

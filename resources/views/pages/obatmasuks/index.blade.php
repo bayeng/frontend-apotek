@@ -14,7 +14,7 @@
                 + Obat Masuk
             </button>
 
-            <table class="table table-bordered" id="suppliers-table">
+            <table class="table table-bordered" id="obatmasuks-table">
                 <thead>
                 <tr>
                     <th>No</th>
@@ -127,7 +127,7 @@
 @section('script')
     <script type="module">
         $(document).ready(function() {
-            $('#suppliers-table').DataTable({
+            $('#obatmasuks-table').DataTable({
                 theme: 'bootstrap-5',
 
             });
