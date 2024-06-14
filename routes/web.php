@@ -31,9 +31,7 @@ Route::prefix('obatmasuks')->group(function (){
     Route::get('/add', [\App\Http\Controllers\ObatMasukController::class, 'storePage'])->name('storepage-obatmasuk');
 });
 
-Route::prefix('obats')->group(function () {
-    Route::get('/', [ObatController::class, 'index']);
-});
+Route::resource('/obats', ObatController::class)->names('obat');
 
 Route::prefix('tujuans')->group(function (){
     Route::get('/', [\App\Http\Controllers\TujuanController::class, 'index']);
