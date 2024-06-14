@@ -60,13 +60,13 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form class="" method="post" action="{{route('store-suplier')}}">
+                            <form class="" method="post" action="{{route('store-obatmasuk')}}">
                                 @csrf
                                 <div class="mb-3">
                                     <div class="row">
                                         <div class="col">
                                             <label for="" class="mb-1">Tanggal Datang</label>
-                                            <input name="nama" type="text" class="form-control"
+                                            <input name="nama" type="date" class="form-control"
                                                    placeholder="{{now()}}" aria-label="First name">
                                         </div>
                                         <div class="col">

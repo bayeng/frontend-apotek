@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -76,7 +77,8 @@ class UserController extends Controller
         if (!$response) {
             dd($response);
         }
+        Session::flash('status', 'Data berhasil dihapus.');
 
-        return redirect()->to('detail-user');
+        return redirect()->to('users');
     }
 }

@@ -10,7 +10,7 @@
             <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Edit
             </button>
-            <a href="" class="btn-secondary btn">Kembali</a>
+            <a href="/supliers" class="btn-secondary btn">Kembali</a>
         </div>
     </div>
     <div class="border bg-white shadow-sm rounded p-2 px-5 d-flex justify-content-between align-items-center mt-5">

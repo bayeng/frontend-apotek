@@ -8,7 +8,7 @@
         </div>
         <div class="col-auto">
             <a href="" class="btn-warning btn">Edit</a>
-            <a href="" class="btn-secondary btn">Kembali</a>
+            <a href="/users" class="btn-secondary btn">Kembali</a>
         </div>
     </div>
     <div class="border bg-white shadow-sm rounded p-2 px-5 d-flex justify-content-between align-items-center mt-5">

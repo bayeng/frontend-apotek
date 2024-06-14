@@ -45,6 +45,23 @@ class ObatMasukController extends Controller
 
     public function store(Request $request)
     {
+        $url = "{$this->apiUrl}/obatmasuks";
+        $data =$request->all();
 
+        $requestForObat = $request->only(['id_obat', 'jumlah']);
+        $responseObatMasuk = Http::post($url, $data);
+//        dd($requestForObat);
+//        $response = Http::post($url, $data);
+        $urlObat = "{$this->apiUrl}/obats/{$requestForObat['id_obat']}";
+        $findObat = Http::get($urlObat);
+
+        $updateStokObat = $findObat->json()['data']['stok'] + $requestForObat['jumlah'];
+
+        $responseObat = Http::patch($urlObat, [
+            "stok" => $updateStokObat
+        ]);
+        dd($responseObat);
+
+        return redirect()->to('obatmasuks');
     }
 }
