@@ -56,7 +56,7 @@
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Suplier</h1>
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Obat Masuk</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -66,7 +66,7 @@
                                     <div class="row">
                                         <div class="col">
                                             <label for="" class="mb-1">Tanggal Datang</label>
-                                            <input name="nama" type="date" class="form-control"
+                                            <input name="tgl_datang" type="date" class="form-control"
                                                    placeholder="{{now()}}" aria-label="First name">
                                         </div>
                                         <div class="col">
@@ -74,11 +74,6 @@
                                             <input required name="jumlah" type="text" class="form-control"
                                                    placeholder="Jumlah Obat" aria-label="Last name">
                                         </div>
-                                    </div>
-                                    <div class="col">
-                                        <label for="alamat" class="mb-1">Jumlah</label>
-                                        <input required name="jumlah" type="text" class="form-control"
-                                            placeholder="Jumlah Obat" aria-label="Last name">
                                     </div>
                                 </div>
                                 <div class="row">

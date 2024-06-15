@@ -17,9 +17,9 @@ class TujuanController extends Controller
     public function index()
     {
         $url = "{$this->apiUrl}/tujuans";
-        $response = Http::get($url);
+        $response = Http::get($url)->json();
 
-        if ($response->successful()){
+        if ($response['success']){
             $data = $response->json();
 
         } else {
@@ -36,9 +36,9 @@ class TujuanController extends Controller
     {
         $url = "{$this->apiUrl}/tujuans";
         $data = $request->all();
-        $response = Http::post($url, $data);
+        $response = Http::post($url, $data)->json();
 
-        if ($response->failed()) {
+        if (!$response['success']) {
             dd($response);
         }
         return redirect()->to('tujuans');
@@ -47,9 +47,9 @@ class TujuanController extends Controller
     public function destroy($id)
     {
         $url = "{$this->apiUrl}/tujuans/{$id}";
-        $response = Http::delete($url);
+        $response = Http::delete($url)->json();
 
-        if ($response->failed()){
+        if (!$response['success']){
             dd($response);
         }
 

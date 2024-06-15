@@ -38,7 +38,7 @@
                                 <a href="{{route('detail-user', $item['id'])}}" class="btn-warning btn">Detail</a>
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Hapus</button>
+                                <button onclick="confirmDelete(event)" type="button" class="btn btn-danger">Hapus</button>
                             </div>
                         </form>
                     </td>
@@ -56,7 +56,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form class="" method="post" action="{{route('store-suplier')}}">
+                        <form class="" method="post" action="{{route('store-user')}}">
                             @csrf
                             <div class="mb-3">
                                 <div class="row mb-2">
@@ -145,10 +145,17 @@
 @endsection
 
 @section('script')
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-
-</script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{asset('js/alert.js')}}"></script>
+    @if(session('success'))
+        <script>
+            showNotification('success', '{{session('success')}}')
+        </script>
+    @elseif(session('error'))
+        <script>
+            showNotification('error', '{{session('error')}}')
+        </script>
+    @endif
 <script type="module">
     $(document).ready(function() {
             console.log()

@@ -17,9 +17,9 @@ class UserController extends Controller
 
     public function index()
     {
-        $response = Http::get("{$this->apiUrl}/users");
-        if ($response->successful()) {
-            $data = $response->json();
+        $response = Http::get("{$this->apiUrl}/users")->json();
+        if ($response['success']) {
+            $data = $response;
             $users = $data['data'] ?? [];
         } else {
             $users = [];
@@ -49,8 +49,8 @@ class UserController extends Controller
         ]);
         $url = "{$this->apiUrl}/users";
 
-        $response = Http::post($url, $data);
-        if (!$response) {
+        $response = Http::post($url, $data)->json();
+        if (!$response['success']) {
             dd($response);
         }
 
@@ -63,7 +63,7 @@ class UserController extends Controller
         $data = $request->all();
 
         $response = Http::patch($url, $data);
-        if (!$response) {
+        if (!$response['success']) {
             dd($response);
         }
 
@@ -73,12 +73,14 @@ class UserController extends Controller
     public function destroy($id)
     {
         $url = "{$this->apiUrl}/users/{$id}";
-        $response = Http::delete($url);
-        if (!$response) {
-            dd($response);
-        }
-        Session::flash('status', 'Data berhasil dihapus.');
+        $response = Http::delete($url)->json();
 
-        return redirect()->to('users');
+        if (!$response['success']) {
+            session()->flash('error', 'Gagal Menghapus Karena User Berkaitan dengan obat masuk.');
+        } else {
+            session()->flash('success', 'Data User berhasil dihapus.');
+        }
+
+        return redirect()->route('user');
     }
 }

@@ -8,7 +8,7 @@ Route::get('/', function () {
 });
 
 Route::prefix('supliers')->group(function () {
-    Route::get('/', [\App\Http\Controllers\SuplierController::class, 'index']);
+    Route::get('/', [\App\Http\Controllers\SuplierController::class, 'index'])->name('supliers');
     Route::get('/{id}', [\App\Http\Controllers\SuplierController::class, 'show'])->name('detail-suplier');
     Route::post('/add', [\App\Http\Controllers\SuplierController::class, 'store'])->name('store-suplier');
     Route::delete('/{id}', [\App\Http\Controllers\SuplierController::class, 'destroy'])->name('delete-suplier');
