@@ -79,7 +79,6 @@ class ObatMasukController extends Controller
         $responseObat = Http::patch($urlObat, [
             "stok" => $updateStokObat
         ]);
-        dd($responseObat);
 
         return redirect()->to('obatmasuks');
     }
