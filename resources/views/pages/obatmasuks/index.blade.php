@@ -14,7 +14,7 @@
             + Obat Masuk
         </button>
 
-        <table class="table table-bordered" id="suppliers-table">
+        <table class="table table-bordered" id="obatmasuk-table">
             <thead>
                 <tr>
                     <th>No</th>
@@ -85,13 +85,9 @@
                                     <div class="col">
                                         <label for="" class="mb-1">Suplier</label>
                                         <select class="form-control" id="suplier" name="id_suplier">
-                                            <option value="">Suplier 1</option>
-                                            <option value="">Suplier 1</option>
-                                            <option value="">Suplier 1</option>
-                                            <option value="">Suplier 1</option>
-                                            {{-- @foreach($supliers as $suplier)
-                                            <option value="{{$suplier['id']}}">{{$suplier['nama']}}</option>
-                                            @endforeach --}}
+                                            @foreach($supliers as $suplier)
+                                                <option value="{{$suplier['id']}}">{{$suplier['nama']}}</option>
+                                            @endforeach
                                         </select>
 
                                     </div>
@@ -114,13 +110,9 @@
                                         <label for="" class="mb-1">Obat</label>
                                         <select required name="id_obat" type="text" class="form-control"
                                             aria-label="Last name">
-                                            <option value="">Obat 1</option>
-                                            <option value="">Obat 1</option>
-                                            <option value="">Obat 1</option>
-                                            <option value="">Obat 1</option>
-                                            {{-- @foreach($obats as $obat)
-                                            <option value="{{$obat['id']}}">{{$obat['nama']}}</option>
-                                            @endforeach --}}
+                                             @foreach($obats as $obat)
+                                                <option value="{{$obat['id']}}">{{$obat['nama']}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -143,13 +135,10 @@
 @push('scripts')
 <script type="module">
     $(document).ready(function() {
-    $('#suplier').select2({
-        theme: 'bootstrap-5'
-    })
-    $('#supliers-table').DataTable({
-        theme: 'bootstrap-5'
-    });
+        $('#obatmasuk-table').DataTable({
+            theme: 'bootstrap-5'
+        });
 
-});
+    });
 </script>
 @endpush
