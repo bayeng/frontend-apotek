@@ -20,7 +20,7 @@ class TujuanController extends Controller
         $response = Http::get($url)->json();
 
         if ($response['success']){
-            $data = $response->json();
+            $data = $response;
 
         } else {
             $data = [];
@@ -37,10 +37,12 @@ class TujuanController extends Controller
         $url = "{$this->apiUrl}/tujuans";
         $data = $request->all();
         $response = Http::post($url, $data)->json();
-
         if (!$response['success']) {
-            dd($response);
+            session()->flash('error', 'Nama Tujuan Sudah Ada');
+            return redirect()->to('tujuans');
         }
+
+        session()->flash('success', 'Berhasil menambahkan data');
         return redirect()->to('tujuans');
     }
 
@@ -50,9 +52,11 @@ class TujuanController extends Controller
         $response = Http::delete($url)->json();
 
         if (!$response['success']){
-            dd($response);
+            session()->flash('error', 'Gagal Menghapus Tujuan');
+            return redirect()->to('tujuans');
         }
 
+        session()->flash('success', 'Berhasil Menghapus data');
         return redirect()->to('tujuans');
     }
 }

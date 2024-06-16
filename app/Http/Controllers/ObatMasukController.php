@@ -19,7 +19,7 @@ class ObatMasukController extends Controller
         $url = "{$this->apiUrl}/obatmasuks";
         $response = Http::get($url)->json();
         if ($response['success']) {
-            $data = $response->json();
+            $data = $response;
             $obatMasuks = $data['data'] ?? [];
         } else {
             $obatMasuks = [];
@@ -27,24 +27,25 @@ class ObatMasukController extends Controller
 
         // Data Relations
         $supliers = Http::get("{$this->apiUrl}/supliers")->json();
-        if ($response['success']) {
-            $data = $supliers->json();
+
+        if ($supliers['success']) {
+            $data = $supliers;
             $supliers = $data['data'] ?? [];
         } else {
             $supliers = [];
         }
 
         $users = Http::get("{$this->apiUrl}/users")->json();
-        if (!response['success']) {
-            $data = $users->json();
+        if ($users['success']) {
+            $data = $users;
             $users = $data['data'] ?? [];
         } else {
             $users = [];
         }
 
         $obats = Http::get("{$this->apiUrl}/obats")->json();
-        if ($response['success']) {
-            $data = $obats->json();
+        if ($obats['success']) {
+            $data = $obats;
             $obats = $data['data'] ?? [];
         } else {
             $obats = [];
