@@ -3,9 +3,7 @@
 use App\Http\Controllers\ObatController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('pages.home');
-});
+Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::prefix('supliers')->group(function () {
     Route::get('/', [\App\Http\Controllers\SuplierController::class, 'index'])->name('supliers');
