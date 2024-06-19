@@ -41,19 +41,39 @@ class ResepController extends Controller
     }
 
     public function create() {
-        return view('pages.resep.index');
+        $tujuans = Http::get($this->apiUrl . '/tujuans')->json();
+        if ($tujuans['success']){
+            $dataTujuans = $tujuans;
+
+        } else {
+            $dataTujuans = [];
+        }
+        $tujuans = $dataTujuans['data'] ?? [];
+
+        $obats = Http::get($this->apiUrl . '/obats')->json();
+        if ($obats['success']){
+            $dataObats = $obats;
+        } else {
+            $dataObats = [];
+        }
+        $obats = $dataObats['data'] ?? [];
+        return view('pages.resep.index', [
+            'tujuans' => $tujuans,
+            'obats' => $obats
+        ]);
     }
 
     public function store(Request $request)
     {
-        $url = env('API_URL') . '/obatkeluars';
-        $data = $request->only([
-            'id_user', 'id_tujuan', 'total_harga', 'nama_obat', 'jumlah', 'harga'
-        ]);
-
-        $response = Http::post($url, $data);
-        if (!$response) {
-            dd($response);
+        $url = "{$this->apiUrl}/obatkeluars";
+        $validatedData = $request->all();
+        // dd($validatedData);
+        $response = Http::post($url, $validatedData);
+        if (!$response['success']) {
+            session()->flash('error', 'Gagal Menambahkan Data :' . $response['message']);
+            return redirect()->back()->withInput($request->all());
+        } else {
+            session()->flash('success', 'Data  berhasil dihapus.');
         }
 
         return redirect()->to('apotek');

@@ -34,7 +34,8 @@ Route::resource('/obats', ObatController::class)->names('obat');
 
 Route::prefix('apotek')->group(function () {
     Route::get('/', [ResepController::class, 'create'])->name('apotek.create');
-    Route::get('/list', [ResepController::class, 'index'])->name('apotek.index');
+    Route::get('/riwayat', [ResepController::class, 'index'])->name('apotek.index');
+    Route::post('/store', [ResepController::class, 'store'])->name('apotek.store');
 });
 
 Route::prefix('tujuans')->group(function (){
