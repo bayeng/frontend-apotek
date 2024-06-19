@@ -10,7 +10,7 @@
             <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Edit
             </button>
-            <a href="" class="btn-secondary btn">Kembali</a>
+            <a href="/supliers" class="btn-secondary btn">Kembali</a>
         </div>
     </div>
     <div class="border bg-white shadow-sm rounded p-2 px-5 d-flex justify-content-between align-items-center mt-5">
@@ -55,7 +55,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Suplier</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Suplier</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">

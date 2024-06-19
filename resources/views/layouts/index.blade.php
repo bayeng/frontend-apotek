@@ -3,6 +3,7 @@
 
 <head>
     @include('includes.head')
+
 </head>
 
 <body>

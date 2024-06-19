@@ -14,8 +14,9 @@ class SuplierController extends Controller
     }
 
     public function index()
+
     {
-        $url = "{$this->apiUrl}/supliers";
+        $url = "{$this->apiUrl}/supliers"; //{http://localhost:8000/api}
         $response = Http::get($url);
         if ($response->successful()) {
             $data = $response->json();
@@ -42,17 +43,19 @@ class SuplierController extends Controller
 
     public function store(Request $request)
     {
-        $url = env('API_URL') . '/supliers';
+        $url = "{$this->apiUrl}/supliers";
         $data = $request->only([
             'nama', 'alamat', 'kota', 'notlp', 'nama_bank', 'no_rekening'
         ]);
 
         $response = Http::post($url, $data);
-        if (!$response) {
+        if ($response->failed()) {
             dd($response);
         }
 
-        return redirect()->to('supliers');
+        session()->flash('success', 'Data  berhasil dibuat.');
+
+        return redirect()->route('supliers');
 
     }
 
@@ -60,21 +63,27 @@ class SuplierController extends Controller
     {
         $url = "{$this->apiUrl}/supliers/{$id}";
         $data = $request->all();
-        $response = Http::patch($url, $data);
-        if (!$response) {
-            dd($response);
+        $response = Http::patch($url, $data)->json();
+
+        if (!$response['success']) {
+            $data = $request->except(['nama']);
+            $response = Http::patch($url, $data)->json();
+
         }
 
+        session()->flash('success', 'Data  berhasil diperbarui.');
         return redirect()->to('supliers');
     }
 
     public  function destroy($id)
     {
-        $url = env('API_URL') . '/supliers/' . $id;
-        $response = Http::delete($url);
-        if (!$response) {
-            dd($response);
+        $url = "{$this->apiUrl}/supliers/{$id}";
+        $response = Http::delete($url)->json();
+        if (!$response['success']) {
+            session()->flash('error', 'Gagal Menghapus Karena suplier Berkaitan dengan obat masuk.');
+        } else {
+            session()->flash('success', 'Data  berhasil dihapus.');
         }
-        return redirect()->to('supliers');
+        return redirect()->route('supliers');
     }
 }

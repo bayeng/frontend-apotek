@@ -1,6 +1,7 @@
 @extends('layouts.index')
 
 @section('content')
+
 <div class="">
     <h1>User</h1>
     <p class="text-secondary d-flex ">
@@ -32,13 +33,12 @@
                     <td>{{$item['email']}}</td>
                     <td>{{$item['role']}}</td>
                     <td class="text-center ">
-                        <form action="{{ route('detail-user',  $item['id']) }}" method="POST" style="display:inline;">
+                        <form action="{{ route('delete-user',  $item['id']) }}" method="POST" style="display:inline;">
                             <div class="d-flex justify-content-center align-items-center gap-2">
-                                <a href="{{route('detail-user', $item['id'])}}" class="btn-warning btn"><i
-                                        class="bi-pencil"></i></a>
+                                <a href="{{route('detail-user', $item['id'])}}" class="btn-warning btn">Detail</a>
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger"><i class="bi-trash"></i></button>
+                                <button onclick="confirmDelete(event)" type="button" class="btn btn-danger">Hapus</button>
                             </div>
                         </form>
                     </td>
@@ -52,18 +52,18 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Suplier</h1>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah User</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form class="" method="post" action="{{route('store-suplier')}}">
+                        <form class="" method="post" action="{{route('store-user')}}">
                             @csrf
                             <div class="mb-3">
                                 <div class="row mb-2">
                                     <div class="col">
                                         <label for="nama" class="mb-1">Nama</label>
                                         <input required name="nama" type="text" class="form-control"
-                                            placeholder="{{now()}}" aria-label="Tanggal Datange">
+                                            placeholder="" aria-label="Tanggal Datange">
                                     </div>
                                     <div class="col">
                                         <label for="jenis_kelamin" class="mb-1">Jenis Kelamin</label>
@@ -79,7 +79,7 @@
                                     </div>
                                     <div class="col">
                                         <label for="" class="mb-1">Tanggal Lahir</label>
-                                        <input required name="tgl_lahir" type="text" class="form-control"
+                                        <input required name="tgl_lahir" type="date" class="form-control"
                                             aria-label="Last name">
                                     </div>
                                 </div>
@@ -141,10 +141,21 @@
     </div>
 
 </div>
+
 @endsection
 
 @section('script')
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{asset('js/alert.js')}}"></script>
+    @if(session('success'))
+        <script>
+            showNotification('success', '{{session('success')}}')
+        </script>
+    @elseif(session('error'))
+        <script>
+            showNotification('error', '{{session('error')}}')
+        </script>
+    @endif
 <script type="module">
     $(document).ready(function() {
             console.log()
@@ -152,4 +163,5 @@
         });
 
 </script>
+
 @endsection

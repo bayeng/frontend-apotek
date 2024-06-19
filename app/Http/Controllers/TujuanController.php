@@ -17,10 +17,10 @@ class TujuanController extends Controller
     public function index()
     {
         $url = "{$this->apiUrl}/tujuans";
-        $response = Http::get($url);
+        $response = Http::get($url)->json();
 
-        if ($response->successful()){
-            $data = $response->json();
+        if ($response['success']){
+            $data = $response;
 
         } else {
             $data = [];
@@ -36,23 +36,27 @@ class TujuanController extends Controller
     {
         $url = "{$this->apiUrl}/tujuans";
         $data = $request->all();
-        $response = Http::post($url, $data);
-
-        if ($response->failed()) {
-            dd($response);
+        $response = Http::post($url, $data)->json();
+        if (!$response['success']) {
+            session()->flash('error', 'Nama Tujuan Sudah Ada');
+            return redirect()->to('tujuans');
         }
+
+        session()->flash('success', 'Berhasil menambahkan data');
         return redirect()->to('tujuans');
     }
 
     public function destroy($id)
     {
         $url = "{$this->apiUrl}/tujuans/{$id}";
-        $response = Http::delete($url);
+        $response = Http::delete($url)->json();
 
-        if ($response->failed()){
-            dd($response);
+        if (!$response['success']){
+            session()->flash('error', 'Gagal Menghapus Tujuan');
+            return redirect()->to('tujuans');
         }
 
+        session()->flash('success', 'Berhasil Menghapus data');
         return redirect()->to('tujuans');
     }
 }

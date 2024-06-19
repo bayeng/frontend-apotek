@@ -17,9 +17,9 @@
             <table class="table table-bordered" id="suppliers-table">
                 <thead>
                 <tr>
-                    <th>No</th>
-                    <th>Tujuan</th>
-                    <th width="10px">Action</th>
+                    <th width="5%">No</th>
+                    <th >Tujuan</th>
+                    <th width="15%">Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -32,7 +32,7 @@
                                   style="display:inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger"><i class="bi-trash"></i></button>
+                                <button type="button" onclick="confirmDelete(event)" class="btn btn-danger">Hapus</button>
                             </form>
                         </td>
                     </tr>
@@ -75,7 +75,18 @@
 @endsection
 
 @section('script')
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{asset('js/alert.js')}}"></script>
+    @if(session('success'))
+        <script>
+            showNotification('success', '{{session('success')}}')
+        </script>
+    @elseif(session('error'))
+        <script>
+            showNotification('error', '{{session('error')}}')
+        </script>
+    @endif
     <script type="module">
         $(document).ready(function() {
             $('#suppliers-table').DataTable({
