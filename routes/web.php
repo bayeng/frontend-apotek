@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ObatController;
+use App\Http\Controllers\ResepController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -29,6 +30,11 @@ Route::prefix('obatmasuks')->group(function (){
 });
 
 Route::resource('/obats', ObatController::class)->names('obat');
+
+Route::prefix('apotek')->group(function () {
+    Route::get('/', [ResepController::class, 'create'])->name('apotek.create');
+    Route::get('/list', [ResepController::class, 'index'])->name('apotek.index');
+});
 
 Route::prefix('tujuans')->group(function (){
     Route::get('/', [\App\Http\Controllers\TujuanController::class, 'index']);
