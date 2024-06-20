@@ -63,6 +63,7 @@ class UserController extends Controller
         $data = $request->all();
 
         $response = Http::patch($url, $data);
+
         if (!$response['success']) {
             dd($response);
         }
