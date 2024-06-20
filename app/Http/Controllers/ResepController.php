@@ -70,10 +70,10 @@ class ResepController extends Controller
         // dd($validatedData);
         $response = Http::post($url, $validatedData);
         if (!$response['success']) {
-            session()->flash('error', 'Gagal Menambahkan Data :' . $response['message']);
+            session()->flash('error', 'Transaksi gagal :' . $response['message']);
             return redirect()->back()->withInput($request->all());
         } else {
-            session()->flash('success', 'Data  berhasil dihapus.');
+            session()->flash('success', 'Transaksi berhasil');
         }
 
         return redirect()->to('apotek');

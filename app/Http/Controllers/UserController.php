@@ -65,6 +65,7 @@ class UserController extends Controller
         $data['jenis_kelamin'] == '1' ? 1 : 0;
         $oldData = Http::get($url)->json();
 
+
         if ($data['password'] == null) {
             $data = $request->except(['password']);
 
@@ -79,6 +80,7 @@ class UserController extends Controller
             return redirect()->route('detail-user', $id);
         }
         $response = Http::patch($url, $data)->json();
+
         if (!$response['success']) {
             dd($response);
         }
