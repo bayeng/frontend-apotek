@@ -62,25 +62,8 @@ class UserController extends Controller
     {
         $url = "{$this->apiUrl}/users/{$id}";
         $data = $request->all();
-        $data['jenis_kelamin'] == '1' ? 1 : 0;
-        $oldData = Http::get($url)->json();
 
-
-        if ($data['password'] == null) {
-            $data = $request->except(['password']);
-
-        }
-
-        if ($data['username'] == $oldData['data']['username']) {
-            $data = $request->except(['username']);
-            $response = Http::patch($url, $data)->json();
-            dd($data);
-            dd($response);
-            session()->flash('success', 'berhasil edit data');
-            return redirect()->route('detail-user', $id);
-        }
         $response = Http::patch($url, $data)->json();
-
         if (!$response['success']) {
             dd($response);
         }

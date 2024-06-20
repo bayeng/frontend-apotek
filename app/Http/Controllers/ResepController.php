@@ -67,7 +67,7 @@ class ResepController extends Controller
     {
         $url = "{$this->apiUrl}/obatkeluars";
         $validatedData = $request->all();
-        // dd($validatedData);
+
         $response = Http::post($url, $validatedData);
         if (!$response['success']) {
             session()->flash('error', 'Transaksi gagal :' . $response['message']);
