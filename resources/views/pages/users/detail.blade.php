@@ -146,11 +146,6 @@
                                     <input required name="nip" type="text" class="form-control"
                                            aria-label="" value="{{$user['nip']}}">
                                 </div>
-                                <div class="col">
-                                    <label for="" class="mb-1">Username</label>
-                                    <input required name="username" type="text" class="form-control"
-                                           aria-label="" value="{{$user['username']}}">
-                                </div>
                             </div>
                             <div class="row mb-2">
                                 <div class="col">

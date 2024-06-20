@@ -70,7 +70,7 @@ class SuplierController extends Controller
         }
 
         session()->flash('success', 'Data  berhasil diperbarui.');
-        return redirect()->to('supliers');
+        return redirect()->route('detail-suplier', $id);
     }
 
     public  function destroy($id)
