@@ -64,11 +64,9 @@ class SuplierController extends Controller
         $url = "{$this->apiUrl}/supliers/{$id}";
         $data = $request->all();
         $response = Http::patch($url, $data)->json();
-
         if (!$response['success']) {
             $data = $request->except(['nama']);
             $response = Http::patch($url, $data)->json();
-
         }
 
         session()->flash('success', 'Data  berhasil diperbarui.');

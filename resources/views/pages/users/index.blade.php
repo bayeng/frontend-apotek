@@ -20,7 +20,6 @@
                 <tr>
                     <th>No</th>
                     <th>Nama</th>
-                    <th>Email</th>
                     <th>Role</th>
                     <th>Action</th>
                 </tr>
@@ -30,7 +29,6 @@
                 <tr>
                     <td>{{$loop->iteration}}</td>
                     <td>{{$item['nama']}}</td>
-                    <td>{{$item['email']}}</td>
                     <td>{{$item['role']}}</td>
                     <td class="text-center ">
                         <form action="{{ route('delete-user',  $item['id']) }}" method="POST" style="display:inline;">
@@ -63,12 +61,14 @@
                                     <div class="col">
                                         <label for="nama" class="mb-1">Nama</label>
                                         <input required name="nama" type="text" class="form-control"
-                                            placeholder="" aria-label="Tanggal Datange">
+                                            placeholder="" aria-label="Tanggal Datang">
                                     </div>
                                     <div class="col">
                                         <label for="jenis_kelamin" class="mb-1">Jenis Kelamin</label>
-                                        <input required name="jenis_kelamin" type="text" class="form-control"
-                                            aria-label="Jenis Kelamin">
+                                        <select name="jenis_kelamin" id="jenis_kelamin" class="form-control">
+                                            <option value="1">Laki-laki</option>
+                                            <option value="0">Perempuan</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="row mb-2">
@@ -91,7 +91,7 @@
                                     </div>
                                     <div class="col">
                                         <label for="" class="mb-1">Agama</label>
-                                        <input required name="Agama" type="text" class="form-control"
+                                        <input required name="agama" type="text" class="form-control"
                                             aria-label="First name">
                                     </div>
                                 </div>
@@ -103,14 +103,14 @@
                                     </div>
                                     <div class="col">
                                         <label for="" class="mb-1">No. Telepon</label>
-                                        <input required name="Agama" type="text" class="form-control"
+                                        <input required name="notlp" type="text" class="form-control"
                                             aria-label="First name">
                                     </div>
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col">
                                         <label for="" class="mb-1">NIP</label>
-                                        <input required name="gol_darah" type="text" class="form-control"
+                                        <input required name="nip" type="text" class="form-control"
                                             aria-label="First name">
                                     </div>
                                     <div class="col">
@@ -123,9 +123,8 @@
                                     <div class="col">
                                         <label for="" class="mb-1">Password</label>
                                         <input required name="password" type="password" class="form-control"
-                                            aria-label="First name">
+                                               aria-label="First name">
                                     </div>
-
                                 </div>
                             </div>
                             <div class="modal-footer">

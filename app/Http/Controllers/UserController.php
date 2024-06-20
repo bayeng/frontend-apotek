@@ -36,6 +36,9 @@ class UserController extends Controller
         $response = Http::get("{$this->apiUrl}/users/{$id}");
 
         $data = $response->json();
+        if (!$data['success']) {
+            dd($data);
+        }
 
         return view('pages.users.detail', [
             'user'=>$data['data']
@@ -44,11 +47,9 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->only([
-            'nama','jenis_kelamin', 'tempat_lahir', 'tgl_lahir', 'gol_darah', 'agama', 'nip', 'username', 'password', 'nip', 'notlp', 'alamat'
-        ]);
+        $data = $request->all();
         $url = "{$this->apiUrl}/users";
-
+        $data['jenis_kelamin'] == '1' ? 1 : 0;
         $response = Http::post($url, $data)->json();
         if (!$response['success']) {
             dd($response);
@@ -61,13 +62,29 @@ class UserController extends Controller
     {
         $url = "{$this->apiUrl}/users/{$id}";
         $data = $request->all();
+        $data['jenis_kelamin'] == '1' ? 1 : 0;
+        $oldData = Http::get($url)->json();
 
-        $response = Http::patch($url, $data);
+        if ($data['password'] == null) {
+            $data = $request->except(['password']);
+
+        }
+
+        if ($data['username'] == $oldData['data']['username']) {
+            $data = $request->except(['username']);
+            $response = Http::patch($url, $data)->json();
+            dd($data);
+            dd($response);
+            session()->flash('success', 'berhasil edit data');
+            return redirect()->route('detail-user', $id);
+        }
+        $response = Http::patch($url, $data)->json();
         if (!$response['success']) {
             dd($response);
         }
 
-        return redirect()->to('detail-user');
+        session()->flash('success', 'berhasil edit data');
+        return redirect()->route('detail-user', $id);
     }
 
     public function destroy($id)
