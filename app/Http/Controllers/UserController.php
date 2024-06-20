@@ -61,6 +61,7 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $url = "{$this->apiUrl}/users/{$id}";
+
         $data = $request->except('username');
         $data['jenis_kelamin'] == '1' ? 1 : 0;
         $oldData = Http::get($url)->json();
@@ -72,7 +73,6 @@ class UserController extends Controller
         }
 
         $response = Http::patch($url, $data)->json();
-
         if (!$response['success']) {
             dd($response);
         }
