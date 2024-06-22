@@ -65,7 +65,16 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $url = "{$this->apiUrl}/users/{$id}";
-        $data = $request->all();
+
+        $data = $request->except('username');
+        $data['jenis_kelamin'] == '1' ? 1 : 0;
+        $oldData = Http::get($url)->json();
+
+
+        if ($data['password'] == null) {
+            $data = $request->except(['password']);
+
+        }
 
         $response = Http::patch($url, $data)->json();
         if (!$response['success']) {
