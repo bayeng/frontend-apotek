@@ -15,6 +15,10 @@ class UserController extends Controller
         $this->apiUrl = config('services.api.url');
     }
 
+    public function login () {
+        return view('pages.auth');
+    }
+
     public function index()
     {
         $response = Http::get("{$this->apiUrl}/users")->json();

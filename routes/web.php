@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\ObatController;
 use App\Http\Controllers\ResepController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/login', [UserController::class, 'login'])->name('login');
 
 Route::prefix('supliers')->group(function () {
     Route::get('/', [\App\Http\Controllers\SuplierController::class, 'index'])->name('supliers');
