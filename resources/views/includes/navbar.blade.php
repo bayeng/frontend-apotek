@@ -17,12 +17,19 @@
                         <a class="dropdown-item" href="#">Settings</a>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="#">Logout</a>
+                        <button type="button" class="logout dropdown-item" href="#">Logout</button>
                     </li>
                 </ul>
             </li>
         </ul>
-
-
     </div>
 </nav>
+
+@section('script')
+<script type="module">
+    $('.logout').on('click', function() {
+        localStorage.removeItem('user')
+        window.location.href = '/login'
+    })
+</script>
+@endsection
