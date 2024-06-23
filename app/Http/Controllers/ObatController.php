@@ -68,9 +68,10 @@ class ObatController extends Controller
         ]);
 
         $response = Http::post($url, $data);
-        if (!$response) {
-            dd($response);
+        if (!$response['success']) {
+            session()->flash('error', 'Operasi gagal :' . $response['message']);
         }
+        session()->flash('success', 'Berhasil menambahkan data obat');
 
         return redirect()->to('obats');
 
@@ -81,9 +82,10 @@ class ObatController extends Controller
         $url = "{$this->apiUrl}/obats/{$id}";
         $data = $request->all();
         $response = Http::patch($url, $data);
-        if (!$response) {
-            dd($response);
+        if (!$response['success']) {
+            session()->flash('error', 'Operasi gagal :' . $response['message']);
         }
+        session()->flash('success', 'Berhasil mengubah data obat');
 
         return redirect()->to('obats');
     }
@@ -92,9 +94,10 @@ class ObatController extends Controller
     {
         $url = env('API_URL') . '/obats/' . $id;
         $response = Http::delete($url);
-        if (!$response) {
-            dd($response);
+        if (!$response['success']) {
+            session()->flash('error', 'Operasi gagal :' . $response['message']);
         }
+        session()->flash('success', 'Berhasil menghapus data obat');
         return redirect()->back();
     }
 }
