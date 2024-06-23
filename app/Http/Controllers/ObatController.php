@@ -17,17 +17,37 @@ class ObatController extends Controller
     {
         $url = "{$this->apiUrl}/obats";
         $response = Http::get($url);
+
         if ($response->successful()) {
             $data = $response->json();
             $obats = $data['data'] ?? [];
+
+            $groupedObats = [
+                'danger' => [],
+                'warning' => [],
+                'aman' => []
+            ];
+
+            foreach ($obats as $obat) {
+                if ($obat['stok'] < 10) {
+                    $groupedObats['danger'][] = $obat;
+                } elseif ($obat['stok'] < 20) {
+                    $groupedObats['warning'][] = $obat;
+                } else {
+                    $groupedObats['aman'][] = $obat;
+                }
+            }
+
+            $sortedObats = array_merge($groupedObats['danger'], $groupedObats['warning'], $groupedObats['aman']);
         } else {
-            $obats = [];
+            $sortedObats = [];
         }
 
         return view('pages.obats.index', [
-            'obats' => $obats
+            'obats' => $sortedObats
         ]);
     }
+
 
     public function show($id)
     {

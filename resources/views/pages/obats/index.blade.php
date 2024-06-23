@@ -25,8 +25,9 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($obats as $item)
-                <tr>
+                @foreach ($obats as $item)
+                <tr
+                    class="{{ $item['stok'] < 10 ? 'table-danger' : '' }} {{ $item['stok'] < 20 ? 'table-warning' : '' }}">
                     <td>{{$loop->iteration}}</td>
                     <td>{{$item['nama']}}</td>
                     <td>{{$item['jenis_obat']}}</td>
