@@ -13,8 +13,7 @@
     <div class="border p-3 me-3 shadow-sm rounded bg-white">
         <form action="{{ route('apotek.store') }}" method="POST">
             @csrf
-            <input required name="id_user" type="number" class="form-control" id="id_user" placeholder="ID User"
-                value="2" hidden>
+            <input required name="id_user" type="number" class="form-control" id="id_user" placeholder="ID User" hidden>
 
             <div class="mb-3">
                 <p class="mb-2 fw-medium">Tujuan</p>
@@ -78,6 +77,12 @@
 
 <script type="module">
     $(document).ready(function() {
+        const user = localStorage.getItem('user');
+        if (user) {
+            let data = JSON.parse(user);
+            $('#id_user').val(data.id);
+        }
+
         function calculateTotalHarga() {
             let total = 0;
             $('#resep .data_resep').each(function() {
