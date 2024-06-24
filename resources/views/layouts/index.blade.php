@@ -17,12 +17,30 @@
             @yield('content')
         </main>
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{asset('js/alert.js')}}"></script>
     <script type="module">
         $(document).ready(function() {
             const user = JSON.parse(localStorage.getItem('user'))
 
-            if (!user) {
+            if (!user.role) {
                 window.location.href = '/login'
+            }
+
+            if(user.role == 'PEGAWAI') {
+                $('#suplier-link').remove()
+                $('#user-link').remove()
+                $('#obatmasuk-link').remove()
+                $('#tujuan-link').remove()
+
+                const restrictedPaths = ['/obatmasuks', '/tujuans', '/supliers', '/users']
+                const currentPath = window.location.pathname
+                const isRestricted = restrictedPaths.some(path => currentPath.includes(path));
+
+                if (isRestricted) {
+                    window.location.href = '/';
+                    showNotification('error', 'Anda tidak memiliki izin untuk mengakses halaman ini')
+                }
             }
         })
     </script>

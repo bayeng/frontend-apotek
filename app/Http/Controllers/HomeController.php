@@ -16,25 +16,16 @@ class HomeController extends Controller
 
     public function index()
     {
-        //Get Total Obat
-        $urlObat = "{$this->apiUrl}/obats";
-        $responseObat = Http::get($urlObat)->json();
-        $obats = count($responseObat['data']) ?? 0;
-
-        //Get total suplier
-        $urlSuplier = "{$this->apiUrl}/supliers";
-        $responseSuplier = Http::get($urlSuplier)->json();
-        $supliers = count($responseSuplier['data']) ?? 0;
-
-        //get total pegawai
-        $urlUser = "{$this->apiUrl}/users";
-        $responseUsers = Http::get($urlUser)->json();
-        $users = count($responseUsers['data']) ?? 0;
+        $transaksimasuk = Http::get("{$this->apiUrl}/transaksimasuk")->json();
+        $transaksikeluar = Http::get("{$this->apiUrl}/transaksikeluar")->json();
+        $omzet = Http::get("{$this->apiUrl}/omzet")->json();
+        $dangerstok = Http::get("{$this->apiUrl}/dangerstok")->json();
 
         return view('pages.home', [
-            'obats' => $obats,
-            'supliers' => $supliers,
-            'users'=> $users
+            'transaksimasuk' => $transaksimasuk['data'],
+            'transaksikeluar' => $transaksikeluar['data'],
+            'omzet'=> $omzet['data'],
+            'dangerstok'=> $dangerstok['data']
         ]);
     }
 }
