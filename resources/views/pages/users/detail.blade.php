@@ -7,7 +7,7 @@
             <h1>{{$user['nama']}}</h1>
         </div>
         <div class="col-auto">
-            <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+            <button type="button" class="btn btn-warning text-white" data-bs-toggle="modal"
                     data-bs-target="#exampleModal">
                 Edit
             </button>

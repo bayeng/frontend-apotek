@@ -36,12 +36,12 @@
                     <td>{{$item['stok']}}</td>
                     <td class="text-center">
                         <div class="d-flex justify-content-center align-items-center gap-2">
-                            <button type="button" data-id="{{ $item['id'] }}" class="btn btn-warning edit"
-                                data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi-pencil"></i></button>
+                            <button type="button" data-id="{{ $item['id'] }}" class="btn btn-warning edit text-white"
+                                data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button>
                             <form method="POST" action="{{ route('obat.destroy', $item['id']) }}">
                                 @csrf
                                 @method("DELETE")
-                                <button type="submit" class="btn btn-danger"><i class="bi-trash"></i></button>
+                                <button type="submit" class="btn btn-danger">Hapus</button>
                             </form>
                         </div>
                     </td>

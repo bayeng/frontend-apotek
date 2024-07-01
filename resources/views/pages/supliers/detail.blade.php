@@ -7,7 +7,7 @@
             <h1>Detail Suplier</h1>
         </div>
         <div class="col-auto">
-            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button type="button" class="btn btn-warning text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Edit
             </button>
             <a href="/supliers" class="btn-secondary btn">Kembali</a>

@@ -7,9 +7,9 @@
         Dashboard / <span class="ms-1 text-dark"> Suplier</span>
     </p>
     <div class="border p-3 me-3 shadow-sm rounded bg-white">
-        {{-- <a href="{{route('add-suplier')}}" class="btn btn-primary justify-content-end mb-3">+ Tambah
+        {{-- <a href="{{route('add-suplier')}}" class="btn backround-blue justify-content-end mb-3">+ Tambah
             Suplier</a>--}}
-        <button type="button" class="btn btn-primary justify-content-end mb-3" data-bs-toggle="modal"
+        <button type="button" class="btn backround-blue justify-content-end mb-3" data-bs-toggle="modal"
             data-bs-target="#exampleModal">
             + Tambah Suplier
         </button>
@@ -36,10 +36,10 @@
                     <td class="text-center" width="20%">
                         <form action="{{ route('delete-suplier',  $item['id']) }}" method="POST"
                             class="col">
-                            <a href="{{route('detail-suplier', $item['id'])}}" class="btn btn-warning">Detail</a>
+                            <a href="{{route('detail-suplier', $item['id'])}}" class="btn backround-yellow">Detail</a>
                             @csrf
                             @method('DELETE')
-                            <button type="button" onclick="confirmDelete(event)" class="btn btn-danger">Hapus</button>
+                            <button type="button" onclick="confirmDelete(event)" class="btn backround-red">Hapus</button>
                         </form>
                     </td>
                 </tr>
@@ -98,7 +98,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                                <button type="submit" class="btn btn-primary">Tambah</button>
+                                <button type="submit" class="btn backround-blue">Tambah</button>
                             </div>
                         </form>
                     </div>

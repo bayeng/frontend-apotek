@@ -33,7 +33,7 @@
                     <td class="text-center ">
                         <form action="{{ route('delete-user',  $item['id']) }}" method="POST" style="display:inline;">
                             <div class="d-flex justify-content-center align-items-center gap-2">
-                                <a href="{{route('detail-user', $item['id'])}}" class="btn-warning btn">Detail</a>
+                                <a href="{{route('detail-user', $item['id'])}}" class="btn-warning btn text-white">Detail</a>
                                 @csrf
                                 @method('DELETE')
                                 <button onclick="confirmDelete(event)" type="button" class="btn btn-danger">Hapus</button>

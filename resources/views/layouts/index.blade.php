@@ -6,7 +6,7 @@
 
 </head>
 
-<body>
+<body class="bg-light">
     @include('includes.navbar')
     <main class="d-flex gap-3">
         <div class="" style="width: 15%">
@@ -23,7 +23,7 @@
         $(document).ready(function() {
             const user = JSON.parse(localStorage.getItem('user'))
 
-            if (!user.role) {
+            if (!user) {
                 window.location.href = '/login'
             }
 
@@ -41,6 +41,7 @@
                     window.location.href = '/';
                     showNotification('error', 'Anda tidak memiliki izin untuk mengakses halaman ini')
                 }
+                document.getElementById('output').innerText = user.nama;
             }
         })
     </script>

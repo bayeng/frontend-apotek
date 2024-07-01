@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary sticky-top shadow-sm">
     <div class="container-fluid px-5 d-flex justify-content-between">
-        <a class="navbar-brand fw-semibold" href="#">APOTEK RSU</a>
+        <a class="navbar-brand fw-semibold" href="#">APOTEK</a>
         <ul class="navbar-nav">
             <!-- Avatar -->
             <li class="nav-item dropdown">
@@ -10,12 +10,6 @@
                         height="22" alt="Portrait of a Woman" loading="lazy" />
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                    <li>
-                        <a class="dropdown-item" href="#">My profile</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">Settings</a>
-                    </li>
                     <li>
                         <button type="button" class="logout dropdown-item" href="#">Logout</button>
                     </li>

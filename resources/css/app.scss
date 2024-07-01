@@ -12,8 +12,46 @@
 }
 
 .sidebar-link:hover {
-    color: #0d6efd !important;
-    background-color: white;
+    color: white !important;
+    background-color: #2988FB;
     border-radius: 5px;
     font-weight: 600;
+}
+
+.backround-blue-sidebar {
+    background-color: #2988FB;
+    border-color: #2988FB;
+    color: white;
+}
+
+.backround-blue {
+    background-color: #2988FB;
+    border-color: #2988FB;
+    color: white;
+}
+
+.backround-blue:hover {
+    background-color: #1644a1;
+    color: white;
+}
+
+.backround-yellow {
+    background-color: #F6C445;
+    border-color: #F6C445;
+    color: white;
+}
+.backround-yellow:hover {
+    background-color: #d5930d;
+    color: white;
+}
+
+.backround-red {
+    background-color: #E45F2B;
+    border-color: #E45F2B;
+    color: white;
+}
+.backround-red:hover {
+    background-color: #bb3c04;
+
+    color: white;
 }
