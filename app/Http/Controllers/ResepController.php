@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use GuzzleHttp\Client;
+use Illuminate\Http\Client\RequestException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -65,18 +67,78 @@ class ResepController extends Controller
 
     public function store(Request $request)
     {
-        $url = "{$this->apiUrl}/obatkeluars";
-        $validatedData = $request->all();
+        $validatedData = $request->validate([
+            'id_user' => 'required|integer',
+            'id_tujuan' => 'required|integer',
+            'total_harga' => 'required|numeric',
+            'catatan' => 'nullable|string',
+            'nama_obat.*' => 'required|string',
+            'jumlah.*' => 'required|integer|min:1',
+            'harga.*' => 'required|numeric|min:1',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+        ]);
+        $nama_obat = $validatedData['nama_obat'];
+        $jumlah = $validatedData['jumlah'];
+        $harga = $validatedData['harga'];
+        try {
+            $client = new Client();
+            $image = $request->file('image');
+            $imageContents = file_get_contents($image->getRealPath());
+            $imageName = $image->getClientOriginalName();
 
-        $response = Http::post($url, $validatedData);
-        if (!$response['success']) {
-            session()->flash('error', 'Transaksi gagal :' . $response['message']);
-            return redirect()->back()->withInput($request->all());
-        } else {
-            session()->flash('success', 'Transaksi berhasil');
+            $formData = [
+                [
+                    'name' => 'id_user',
+                    'contents' => $validatedData['id_user']
+                ],
+                [
+                    'name' => 'id_tujuan',
+                    'contents' => $validatedData['id_tujuan']
+                ],
+                [
+                    'name' => 'total_harga',
+                    'contents' => $validatedData['total_harga']
+                ],
+                [
+                    'name' => 'catatan',
+                    'contents' => $validatedData['catatan']
+                ],
+                [
+                    'name' => 'image',
+                    'contents' => $imageContents,
+                    'filename' => $imageName,
+                ],
+            ];
+            foreach ($nama_obat as $index => $nama) {
+                $formData[] = [
+                    'name' => 'nama_obat[]',
+                    'contents' => $nama,
+                ];
+                $formData[] = [
+                    'name' => 'jumlah[]',
+                    'contents' => $jumlah[$index],
+                ];
+                $formData[] = [
+                    'name' => 'harga[]',
+                    'contents' => $harga[$index],
+                ];
+            }
+
+            $response = $client->request('POST', "{$this->apiUrl}/obatkeluars", ['multipart' => $formData]);
+            $statusCode = $response->getStatusCode();
+            $body = $response->getBody()->getContents();
+
+            if ($statusCode == 200) {
+                session()->flash('success', 'Transaksi sukses');
+                return redirect()->to('/apotek');
+            } else {
+                session()->flash('error', 'Transaksi gagal');
+                return redirect()->back()->withInput();
+            }
+        } catch (RequestException $e) {
+            return response()->json(['success' => false, 'message' => 'Gagal mengirim permintaan: ' . $e->getMessage()]);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => 'Terjadi kesalahan: ' . $e->getMessage()]);
         }
-
-        return redirect()->to('apotek');
-
     }
 }

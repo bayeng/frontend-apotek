@@ -11,7 +11,7 @@
         Dashboard / <span class="ms-1 text-dark"> Apotek</span>
     </p>
     <div class="border p-3 me-3 shadow-sm rounded bg-white">
-        <form action="{{ route('apotek.store') }}" method="POST">
+        <form action="{{ route('apotek.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <input required name="id_user" type="number" class="form-control" id="id_user" placeholder="ID User" hidden>
 
@@ -49,12 +49,25 @@
                     <input type="number" name="harga[]" class="form-control w-25 harga" placeholder="Harga">
                     <button type="button" class="btn btn-danger delete" data-id="0"><i class="bi-trash"></i></button>
                 </div>
+
+                <div class="mb-3 d-flex justify-content-between align-items-center gap-3">
+                    <p class="mb-2 fw-medium w-75 text-end">Total Harga</p>
+                    <input type="number" name="total_harga" class="form-control w-25" id="total_harga" readonly>
+                </div>
+
+                <div class="d-flex align-items-start gap-5 mt-5">
+                    <div class="w-50">
+                        <label for="catatan" class="form-label mb-2 fw-medium">Catatan</label>
+                        <textarea name="catatan" id="catatan" cols="30" rows="5" class="form-control"
+                            style="resize: none;"></textarea>
+                    </div>
+                    <div class="w-50">
+                        <label for="image" class="form-label mb-2 fw-medium">Bukti Resep</label>
+                        <input type="file" name="image" id="image" class="form-control">
+                    </div>
+                </div>
             </div>
 
-            <div class="mb-3 d-flex justify-content-between align-items-center gap-3">
-                <p class="mb-2 fw-medium w-75 text-end">Total Harga</p>
-                <input type="number" name="total_harga" class="form-control w-25" id="total_harga" readonly>
-            </div>
             <button type="submit" class="btn btn-success mt-3">Simpan Data</button>
         </form>
     </div>
