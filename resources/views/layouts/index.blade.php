@@ -42,6 +42,21 @@
                 }
                 document.getElementById('output').innerText = user.nama;
             }
+
+            if(user.role == 'ADMIN') {
+                $('#apotek-link').remove()
+                $('#tujuan-link').remove()
+
+                const restrictedPaths = ['/apotek', '/tujuan']
+                const currentPath = window.location.pathname
+                const isRestricted = restrictedPaths.some(path => currentPath.includes(path));
+
+                if (isRestricted) {
+                    window.location.href = '/';
+                    showNotification('error', 'Anda tidak memiliki izin untuk mengakses halaman ini')
+                }
+                document.getElementById('output').innerText = user.nama;
+            }
         })
     </script>
 
