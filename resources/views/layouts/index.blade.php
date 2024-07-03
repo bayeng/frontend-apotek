@@ -31,7 +31,6 @@
                 $('#suplier-link').remove()
                 $('#user-link').remove()
                 $('#obatmasuk-link').remove()
-                $('#tujuan-link').remove()
 
                 const restrictedPaths = ['/obatmasuks', '/tujuans', '/supliers', '/users']
                 const currentPath = window.location.pathname
