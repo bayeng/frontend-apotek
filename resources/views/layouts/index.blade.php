@@ -32,7 +32,7 @@
                 $('#user-link').remove()
                 $('#obatmasuk-link').remove()
 
-                const restrictedPaths = ['/obatmasuks', '/tujuans', '/supliers', '/users']
+                const restrictedPaths = ['/obatmasuks', '/supliers', '/users']
                 const currentPath = window.location.pathname
                 const isRestricted = restrictedPaths.some(path => currentPath.includes(path));
 
