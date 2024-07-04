@@ -57,7 +57,13 @@
                 }
                 document.getElementById('output').innerText = user.nama;
             }
+
+            $('.logout').on('click', function() {
+                localStorage.removeItem('user')
+                window.location.href = '/login'
+            })
         })
+
     </script>
 
     @stack('scripts')

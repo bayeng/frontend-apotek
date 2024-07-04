@@ -117,6 +117,10 @@
 @endif
 <script type="module">
     $(document).ready(function() {
+        $('.logout').on('click', function() {
+            localStorage.removeItem('user')
+            window.location.href = '/login'
+        })
 
         $('#table-user').DataTable();
 
