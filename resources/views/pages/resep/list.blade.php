@@ -93,7 +93,7 @@
         $('.show').on('click', function() {
             let id = $(this).data('id')
             let urlApi = '{{ env('API_URL') }}'
-            let urlImage = urlApi.replace('/api', '')
+            let urlImage = '{{ env('API_IMAGE') }}'
             $('#resep').html('');
 
             $.ajax({
