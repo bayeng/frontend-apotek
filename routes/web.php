@@ -38,6 +38,7 @@ Route::prefix('apotek')->group(function () {
     Route::get('/', [ResepController::class, 'create'])->name('apotek.create');
     Route::get('/riwayat', [ResepController::class, 'index'])->name('apotek.index');
     Route::post('/store', [ResepController::class, 'store'])->name('apotek.store');
+    Route::get('/generatepdf', [ResepController::class, 'generatePDF'])->name('generate-pdf');
 });
 
 Route::prefix('tujuans')->group(function (){
@@ -45,3 +46,4 @@ Route::prefix('tujuans')->group(function (){
     Route::post('/', [\App\Http\Controllers\TujuanController::class, 'store'])->name('store-tujuan');
     Route::delete('/{id}', [\App\Http\Controllers\TujuanController::class, 'destroy'])->name('delete-tujuan');
 });
+

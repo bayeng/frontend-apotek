@@ -23,27 +23,27 @@
         $(document).ready(function() {
             const user = JSON.parse(localStorage.getItem('user'))
 
-            if (!user) {
-                window.location.href = '/login'
-            }
+            // if (!user) {
+            //     window.location.href = '/login'
+            // }
 
-            if(user.role == 'PEGAWAI') {
-                $('#suplier-link').remove()
-                $('#user-link').remove()
-                $('#obatmasuk-link').remove()
+            // if(user.role == 'PEGAWAI') {
+            //     $('#suplier-link').remove()
+            //     $('#user-link').remove()
+            //     $('#obatmasuk-link').remove()
+            //
+            //     const restrictedPaths = ['/obatmasuks', '/supliers', '/users']
+            //     const currentPath = window.location.pathname
+            //     const isRestricted = restrictedPaths.some(path => currentPath.includes(path));
+            //
+            //     if (isRestricted) {
+            //         window.location.href = '/';
+            //         showNotification('error', 'Anda tidak memiliki izin untuk mengakses halaman ini')
+            //     }
+            //     document.getElementById('output').innerText = user.nama;
+            // }
 
-                const restrictedPaths = ['/obatmasuks', '/supliers', '/users']
-                const currentPath = window.location.pathname
-                const isRestricted = restrictedPaths.some(path => currentPath.includes(path));
-
-                if (isRestricted) {
-                    window.location.href = '/';
-                    showNotification('error', 'Anda tidak memiliki izin untuk mengakses halaman ini')
-                }
-                document.getElementById('output').innerText = user.nama;
-            }
-
-            if(user.role == 'ADMIN') {
+            // if(user.role == 'ADMIN') {
                 $('#apotek-link').remove()
                 $('#tujuan-link').remove()
 
@@ -56,7 +56,7 @@
                     showNotification('error', 'Anda tidak memiliki izin untuk mengakses halaman ini')
                 }
                 document.getElementById('output').innerText = user.nama;
-            }
+            // }
 
             $('.logout').on('click', function() {
                 localStorage.removeItem('user')

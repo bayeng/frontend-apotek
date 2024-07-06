@@ -6,6 +6,8 @@ use GuzzleHttp\Client;
 use Illuminate\Http\Client\RequestException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
+
 
 class ResepController extends Controller
 {
@@ -140,5 +142,18 @@ class ResepController extends Controller
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'message' => 'Terjadi kesalahan: ' . $e->getMessage()]);
         }
+    }
+
+    public function generatePDF()
+    {
+        $response = Http::get("{$this->apiUrl}/obatkeluars")->json();
+        if (!$response['success']) {
+            session()->flash('failed', 'Data kosong.');
+            return redirect()->route('supliers');
+        }
+        $transaksi = $response['data'];
+        $pdf = PDF::loadView('pages.pdf.index', ['transaksi' => $transaksi]);
+
+        return $pdf->download('testing.pdf');
     }
 }
