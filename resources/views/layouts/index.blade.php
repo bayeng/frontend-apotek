@@ -23,11 +23,11 @@
         $(document).ready(function() {
             const user = JSON.parse(localStorage.getItem('user'))
 
-            // if (!user) {
-            //     window.location.href = '/login'
-            // }
+            if (!user) {
+                window.location.href = '/login'
+            }
 
-            // if(user.role == 'PEGAWAI') {
+            if(user.role == 'PEGAWAI') {
                 $('#suplier-link').remove()
                 $('#user-link').remove()
                 $('#obatmasuk-link').remove()
@@ -41,7 +41,7 @@
                     showNotification('error', 'Anda tidak memiliki izin untuk mengakses halaman ini')
                 }
                 document.getElementById('output').innerText = user.nama;
-            // }
+            }
 
             if(user.role == 'ADMIN') {
                 $('#apotek-link').remove()
