@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use GuzzleHttp\Client;
 use Illuminate\Http\Client\RequestException;
 use Illuminate\Http\Request;
@@ -147,12 +148,30 @@ class ResepController extends Controller
     public function generatePDF()
     {
         $response = Http::get("{$this->apiUrl}/obatkeluars")->json();
+        $data = [];
+
         if (!$response['success']) {
-            session()->flash('failed', 'Data kosong.');
-            return redirect()->route('supliers');
+            session()->flash('error', 'Server Error');
+            return redirect()->route('apotek.index');
         }
-        $transaksi = $response['data'];
-        $pdf = PDF::loadView('pages.pdf.index', ['transaksi' => $transaksi]);
+
+        $today = Carbon::today()->toDateString();
+
+        $data = $response['data'];
+
+        $data = array_filter($data , function ($obatKeluar) use ($today) {
+            return substr($obatKeluar['created_at'], 0, 10) === $today;
+        });
+        if ($data == []) {
+            session()->flash('error', 'data hari ini kosong');
+            return redirect()->route('apotek.index');
+        }
+
+
+        $pdf = PDF::loadView('pages.pdf.index', [
+            'transaksi' => $data,
+            'today'=> $today
+        ]);
 
         return $pdf->download('testing.pdf');
     }

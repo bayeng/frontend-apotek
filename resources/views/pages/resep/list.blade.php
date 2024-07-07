@@ -3,8 +3,11 @@
 @section('content')
 
 <div class="">
-    <h1>Riwayat Transaksi</h1>
-    <p class="text-secondary d-flex">
+    <div class="d-flex justify-content-between align-items-center me-3">
+        <h1>Riwayat Transaksi</h1>
+        <a href="{{route('generate-pdf')}}" class="btn btn-secondary"><span class="bi bi-file-pdf"></span> Cetak Laporan</a>
+    </div>
+    <p class="text-secondary">
         Dashboard / Apotek / <span class="ms-1 text-dark"> Riwayat</span>
     </p>
 
@@ -85,6 +88,17 @@
 @endsection
 
 @push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{asset('js/alert.js')}}"></script>
+    @if(session('success'))
+        <script>
+            showNotification('success', '{{session('success')}}')
+        </script>
+    @elseif(session('error'))
+        <script>
+            showNotification('error', '{{session('error')}}')
+        </script>
+    @endif
 
 <script type="module">
     $(document).ready(function() {

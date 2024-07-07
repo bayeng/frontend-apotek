@@ -1,7 +1,17 @@
+
 <!doctype html>
 <html lang="en">
 <head>
    @include('includes.head')
+    @php
+        if (!function_exists('formatRupiah')) {
+            function formatRupiah($number)
+            {
+                $fmt = new NumberFormatter('id_ID', NumberFormatter::CURRENCY);
+                return $fmt->formatCurrency($number, 'IDR');
+            }
+        }
+    @endphp
     <style>
 
         body {
@@ -34,10 +44,10 @@
     </style>
 </head>
 <body class="p-3">
-    <h1 class=" text-primary">Hellow World</h1>
-    <p class="my-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur corporis doloribus facilis iste neque sint sunt ut veritatis, voluptas voluptatem?</p>
+    <h1 class=" text-primary">APOTEK RSU</h1>
+    <p class="my-3">LAPORAN HARIAN OBAT YANG TERJUAL</p>
 
-    <p>Tanggal: xxxx-xx-xx</p>
+    <p>Tanggal: {{$today}}</p>
 
     <table class="table table-bordered">
         <tr>
@@ -58,7 +68,7 @@
                         <br>
                     @endforeach
                 </td>
-                <td>{{$item['total_harga']}}</td>
+                <td>{{ formatRupiah($item['total_harga']) }}</td>
             </tr>
         @endforeach
     </table>
