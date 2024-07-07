@@ -1,6 +1,15 @@
 @extends('layouts.index')
 
 @section('content')
+    @php
+        if (!function_exists('formatRupiah')) {
+            function formatRupiah($number)
+            {
+                $fmt = new NumberFormatter('id_ID', NumberFormatter::CURRENCY);
+                return $fmt->formatCurrency($number, 'IDR');
+            }
+        }
+    @endphp
 <div class="">
     <h1>Obat</h1>
     <p class="text-secondary d-flex ">
@@ -31,8 +40,8 @@
                     <td>{{$loop->iteration}}</td>
                     <td>{{$item['nama']}}</td>
                     <td>{{$item['jenis_obat']}}</td>
-                    <td>{{$item['harga_jual']}}</td>
-                    <td>{{$item['harga_beli']}}</td>
+                    <td>{{formatRupiah($item['harga_jual'])}}</td>
+                    <td>{{formatRupiah($item['harga_jual'])}}</td>
                     <td>{{$item['stok']}}</td>
                     <td class="text-center">
                         <div class="d-flex justify-content-center align-items-center gap-2">

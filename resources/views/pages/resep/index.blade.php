@@ -25,6 +25,21 @@
                     @endforeach
                 </select>
             </div>
+            <div class="d-flex align-items-start gap-5 mt-5">
+                <div class="w-50">
+                    <label for="catatan" class="form-label mb-2 fw-medium">Catatan</label>
+                    <textarea name="catatan" id="catatan" cols="30" rows="5" class="form-control"
+                              style="resize: none;"></textarea>
+                </div>
+                <div class="w-50">
+                    <label for="image" class="form-label mb-2 fw-medium">Bukti Resep</label>
+                    <input type="file" name="image" id="image" class="form-control">
+                </div>
+            </div>
+            <div class="mb-3 d-flex justify-content-between align-items-center gap-3 me-xl-5">
+                <p class="mb-2 fw-medium w-75 text-end">Total Harga</p>
+                <input type="text" name="total_harga" class="form-control w-25" id="total_harga" readonly>
+            </div>
 
             <div id="resep">
                 <div class="d-flex justify-content-between align-items-end mb-3">
@@ -48,23 +63,6 @@
                         style="display:none;">
                     <input type="number" name="harga[]" class="form-control w-25 harga" placeholder="Harga">
                     <button type="button" class="btn btn-danger delete" data-id="0"><i class="bi-trash"></i></button>
-                </div>
-
-                <div class="mb-3 d-flex justify-content-between align-items-center gap-3">
-                    <p class="mb-2 fw-medium w-75 text-end">Total Harga</p>
-                    <input type="number" name="total_harga" class="form-control w-25" id="total_harga" readonly>
-                </div>
-
-                <div class="d-flex align-items-start gap-5 mt-5">
-                    <div class="w-50">
-                        <label for="catatan" class="form-label mb-2 fw-medium">Catatan</label>
-                        <textarea name="catatan" id="catatan" cols="30" rows="5" class="form-control"
-                            style="resize: none;"></textarea>
-                    </div>
-                    <div class="w-50">
-                        <label for="image" class="form-label mb-2 fw-medium">Bukti Resep</label>
-                        <input type="file" name="image" id="image" class="form-control">
-                    </div>
                 </div>
             </div>
 
@@ -105,6 +103,25 @@
             $('#total_harga').val(total);
         }
 
+        function calculateTotalHargaPerItem() {
+            let total = 0;
+            $('#resep .data_resep').each(function() {
+                let harga = Number($(this).find('.harga').val());
+                total += harga;
+            });
+            $('#total_harga').val(total);
+        }
+
+
+        function formatRupiah(angka) {
+            let rupiah = '';
+            let angkarev = angka.toString().split('').reverse().join('');
+            for (let i = 0; i < angkarev.length; i++) {
+                if (i % 3 == 0) rupiah += angkarev.substr(i, 3) + '.';
+            }
+            return 'Rp' + rupiah.split('', rupiah.length - 1).reverse().join('');
+        }
+
         $('#add-obat').on('click', function() {
             let newId = $('#resep').children().length;
             $('#resep').append(`
@@ -129,7 +146,7 @@
         $('#resep').on('click', '.delete', function() {
             let id = $(this).data('id');
             $('#'+id).remove();
-            calculateTotalHarga();
+            calculateTotalHargaPerItem();
         });
 
         $('#resep').on('change', '.id_obat', function() {

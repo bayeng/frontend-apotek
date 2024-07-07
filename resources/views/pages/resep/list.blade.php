@@ -1,6 +1,15 @@
 @extends('layouts.index')
 
 @section('content')
+    @php
+        if (!function_exists('formatRupiah')) {
+            function formatRupiah($number)
+            {
+                $fmt = new NumberFormatter('id_ID', NumberFormatter::CURRENCY);
+                return $fmt->formatCurrency($number, 'IDR');
+            }
+        }
+    @endphp
 
 <div class="">
     <div class="d-flex justify-content-between align-items-center me-3">
@@ -28,7 +37,7 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $item['nama_user']}}</td>
                     <td>{{ $item['nama_tujuan'] }}</td>
-                    <td>{{ $item['total_harga'] }}</td>
+                    <td>{{ formatRupiah($item['total_harga']) }}</td>
                     <td class="text-center">
                         <button type="button" class="btn btn-primary show" data-bs-toggle="modal"
                             data-bs-target="#exampleModal" data-id="{{ $item['id'] }}"><i

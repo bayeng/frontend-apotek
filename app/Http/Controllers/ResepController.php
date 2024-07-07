@@ -148,6 +148,7 @@ class ResepController extends Controller
     public function generatePDF()
     {
         $response = Http::get("{$this->apiUrl}/obatkeluars")->json();
+        $omzet = Http::get("{$this->apiUrl}/omzet")->json();
         $data = [];
 
         if (!$response['success']) {
@@ -170,7 +171,8 @@ class ResepController extends Controller
 
         $pdf = PDF::loadView('pages.pdf.index', [
             'transaksi' => $data,
-            'today'=> $today
+            'today'=> $today,
+            'omzet'=> $omzet['data']
         ]);
 
         return $pdf->download('testing.pdf');

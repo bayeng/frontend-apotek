@@ -13,6 +13,9 @@
         }
     @endphp
     <style>
+        .font-bold {
+            font-weight: bold;
+        }
 
         body {
             font-family: Arial, sans-serif;
@@ -72,5 +75,6 @@
             </tr>
         @endforeach
     </table>
+    <p class="my-3 font-bold">Total Pendapatan = {{formatRupiah($omzet)}}</p>
 </body>
 </html>
