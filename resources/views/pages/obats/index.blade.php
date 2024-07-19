@@ -70,7 +70,7 @@
                     </div>
                     <div class="modal-body">
                         <form class="" method="post" action="{{ route('obat.store') }}" id="obat-form">
-
+                            @CSRF
                             <div class="mb-3">
                                 <label for="nama" class="mb-1">Nama Obat</label>
                                 <input required name="nama" type="text" class="form-control" placeholder="Nama Obat"
