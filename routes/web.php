@@ -32,7 +32,15 @@ Route::prefix('obatmasuks')->group(function (){
     Route::get('/add', [\App\Http\Controllers\ObatMasukController::class, 'storePage'])->name('storepage-obatmasuk');
 });
 
-Route::resource('/obats', ObatController::class)->names('obat');
+//Route::resource('/obats', ObatController::class)->names('obat');
+
+Route::prefix('/obats')->group(function () {
+    Route::get('/', [\App\Http\Controllers\ObatController::class, 'index'])->name('obats');
+    Route::get('/{id}', [\App\Http\Controllers\ObatController::class, 'show'])->name('detail-obat');
+    Route::post('/', [\App\Http\Controllers\ObatController::class, 'store'])->name('obat.store');
+    Route::get('/add', [\App\Http\Controllers\ObatController::class, 'storePage'])->name('storepage-obat');
+    Route::delete('/{id}', [\App\Http\Controllers\ObatController::class, 'storePage'])->name('obat.destroy');
+});
 
 Route::prefix('apotek')->group(function () {
     Route::get('/', [ResepController::class, 'create'])->name('apotek.create');
